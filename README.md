@@ -18,5 +18,3 @@
     Или на Support Discord Nightly -
     https://discord.gg/jKtqUwMSQT
     
-    ![Screenshot_1](https://user-images.githubusercontent.com/68936761/191300081-7655d63e-6efa-4c93-b066-471309e389b6.png)
-    ![Screenshot_2](https://user-images.githubusercontent.com/68936761/191300097-089c9213-4ac6-4bc0-bb96-22ddb2de14dc.png)
