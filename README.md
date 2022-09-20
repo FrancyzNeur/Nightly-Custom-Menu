@@ -18,7 +18,5 @@
     Или на Support Discord Nightly -
     https://discord.gg/jKtqUwMSQT
     
-    
-    ![Screenshot_1](https://user-images.githubusercontent.com/68936761/191299953-0fac6185-2f38-4486-981e-4c1f36364a67.png)
-    ![Screenshot_2](https://user-images.githubusercontent.com/68936761/191299967-26ac30ca-79f3-4051-a684-8a30c9dae9cc.png)
-
+    ![Screenshot_1](https://user-images.githubusercontent.com/68936761/191300081-7655d63e-6efa-4c93-b066-471309e389b6.png)
+    ![Screenshot_2](https://user-images.githubusercontent.com/68936761/191300097-089c9213-4ac6-4bc0-bb96-22ddb2de14dc.png)
