@@ -17,4 +17,7 @@
 
     Или на Support Discord Nightly -
     https://discord.gg/jKtqUwMSQT
+
+    Скрины можете посмотреть здесь - 
+    https://purplemod.cf/
     
