@@ -1,4 +1,9 @@
 ///////////////////////////////////////////////////////////
+// <DodgerSky> skin created by OmegaExtern.
+// Editted by Gaerisson.
+// Originally written for Garry's Mod game.
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 // Tracker scheme resource file
 //
 // sections:
@@ -22,17 +27,16 @@ Scheme
 		"Orange"			"255 155 0 255"
 		"TransparentBlack"	"0 0 0 128"
 		"Black"				"0 0 0 255"
-		"LimeGreen"			"0 205 102 255"
 
 		"Blank"				"0 0 0 0"
 
-		"GMod_BG_Opaque"	"24 7 51 230"  // Main Background Color
+		"GMod_BG_Opaque"	"40 40 40 240"
 		"GMod_BG"			"108 111 114 0" // SRCDS cannot do transparency, so we gotta replace Blank with this.
 		"GMod_WhiteBlank"	"255 255 255 0"
 
 		"SteamLightGreen"			"157 194 80 255"
-		"AchievementsLightGrey"		"88 114 70 255"
-		"AchievementsDarkGrey"		"153 50 204 255"
+		"AchievementsLightGrey"		"79 79 79 255"
+		"AchievementsDarkGrey"		"55 55 55 255"
 		"AchievementsInactiveFG"	"130 130 130 255"
 	}
 
@@ -42,36 +46,36 @@ Scheme
 	// controls use these to determine their settings
 	BaseSettings
 	{
-		// vgui_controls color specifications // CONSOLE
-		Border.Bright					"200 200 200 255"	// the lit side of a control
-		Border.Dark						"40 40 40 198"		// the dark/unlit side of a control
-		Border.Selection				"Black"			// the additional border color for displaying the default/selected button
-		Border.DarkSolid				"40 40 40 255"
-		Border.Subtle					"80 80 80 255"
+		// vgui_controls color specifications
+		Border.Bright					"17 17 17 255"	// the lit side of a control
+		Border.Dark						"17 17 17 255"		// the dark/unlit side of a control
+		Border.Selection				"54 54 54 255"			// the additional border color for displaying the default/selected button
+		Border.DarkSolid				"17 17 17 255"
+		Border.Subtle					"17 17 17 255"
 
-		Button.TextColor				"255 255 255 255"
-		Button.BgColor					"65 2 166 255"
-		Button.ArmedTextColor			"255 255 255 255"
-		Button.ArmedBgColor				"121 83 181 255"	[$WIN32]
-		Button.ArmedBgColor				"143 0 255 255"		[$X360]
-		Button.DepressedTextColor		"White"
-		Button.DepressedBgColor			"120 81 169 255"
-		Button.FocusBorderColor			"82 82 82 255"
+		Button.TextColor				"240 240 240 255"
+		Button.BgColor					"45 45 48 50"
+		Button.ArmedTextColor			"121 83 181 255"
+		Button.ArmedBgColor				"62 62 64 255"	[$WIN32]
+		Button.ArmedBgColor				"62 62 64 255"		[$X360]
+		Button.DepressedTextColor		"18 18 18 255"
+		Button.DepressedBgColor			"121 83 181 255"
+		Button.FocusBorderColor			"Blank"
 
-		CheckButton.TextColor			"White"
-		CheckButton.SelectedTextColor	"White"
-		CheckButton.BgColor				"White"
+		CheckButton.TextColor			"240 240 240 255"
+		CheckButton.SelectedTextColor	"190 190 190 255"
+		CheckButton.BgColor				"30 30 32 50"
 		CheckButton.Border1				"Border.Subtle" 		// the left checkbutton border
 		CheckButton.Border2				"Border.Subtle"		// the right checkbutton border
-		CheckButton.Check				"Black"	// color of the check itself
+		CheckButton.Check				"60 60 62 255" // color of the check itself
 		CheckButton.DisabledFgColor		"Black"	// color of the check itself when disabled
-		CheckButton.HighlightFgColor	"OffWhite"
+		CheckButton.HighlightFgColor	"121 83 181 255"
 		CheckButton.ArmedBgColor		"Blank"
 		CheckButton.DepressedBgColor	"Blank"
 		CheckButton.DisabledBgColor		"180 180 180 255"
 
-		ComboBoxButton.ArrowColor		"81 81 81 255"
-		ComboBoxButton.ArmedArrowColor	"110 110 110 255"
+		ComboBoxButton.ArrowColor		"121 83 181 255"
+		ComboBoxButton.ArmedArrowColor	"0 60 255 255"
 		ComboBoxButton.BgColor			"GMod_WhiteBlank"
 		ComboBoxButton.DisabledBgColor	"GMod_WhiteBlank"
 
@@ -79,119 +83,120 @@ Scheme
 		Frame.ClientInsetX				8
 		Frame.ClientInsetY				6
 		Frame.BgColor					"GMod_BG_Opaque"	[$WIN32]
-		Frame.BgColor					"80 80 80 192"		[$X360]
-		Frame.OutOfFocusBgColor			"GMod_BG_Opaque"	[$WIN32]
-		Frame.OutOfFocusBgColor			"GMod_BG_Opaque"		[$X360]
+		Frame.BgColor					"50 50 50 250"		[$X360]
+		Frame.OutOfFocusBgColor			"25 25 25 240"	[$WIN32]
+		Frame.OutOfFocusBgColor			"25 25 25 192"		[$X360]
 		Frame.FocusTransitionEffectTime	"0.3"							// time it takes for a window to fade in/out on focus/out of focus
 		Frame.TransitionEffectTime		"0.3"				[$WIN32]	// time it takes for a window to fade in/out on open/close
 		Frame.TransitionEffectTime		"0.2"				[$X360]		// time it takes for a window to fade in/out on open/close
 		Frame.AutoSnapRange				"0"
-		FrameGrip.Color1				"200 200 200 196"
-		FrameGrip.Color2				"0 0 0 196"
-		FrameTitleButton.FgColor		"200 200 200 196"
+		FrameGrip.Color1				"40 40 42 255"
+		FrameGrip.Color2				"40 40 42 255"
+		FrameTitleButton.FgColor		"255 0 0 204"
 		FrameTitleButton.BgColor		"GMod_BG"
-		FrameTitleButton.DisabledFgColor	"255 255 255 192"
+		FrameTitleButton.DisabledFgColor	"197 64 74 91"
 		FrameTitleButton.DisabledBgColor	"GMod_BG"
 		FrameSystemButton.FgColor		"Blank"
 		FrameSystemButton.BgColor		"Blank"
 		FrameSystemButton.Icon			""
 		FrameSystemButton.DisabledIcon	""
 		FrameTitleBar.Font				"UiBold"		[$WIN32]
-		FrameTitleBar.Font				"DefaultLarge"	[$WIN32]
-		FrameTitleBar.TextColor			"255 255 255 204"
+		FrameTitleBar.Font				"DefaultLarge"	[$X360]
+		FrameTitleBar.TextColor			"121 83 181 204"
 		FrameTitleBar.BgColor			"GMod_BG"
-		FrameTitleBar.DisabledTextColor	"255 255 255 91"
+		FrameTitleBar.DisabledTextColor	"121 83 181 91"
 		FrameTitleBar.DisabledBgColor	"GMod_BG"
 
-		GraphPanel.FgColor				"White"
-		GraphPanel.BgColor				"TransparentBlack"
+		GraphPanel.FgColor				"121 83 181 255"
+		GraphPanel.BgColor				"17 17 17 150"
 
-		Label.TextDullColor				"DullWhite"
-		Label.TextColor					"OffWhite"
-		Label.TextBrightColor			"White"
-		Label.SelectedTextColor			"White"
+		Label.TextDullColor				"190 190 190 255"
+		Label.TextColor					"190 190 190 255"
+		Label.TextBrightColor			"240 240 240 255"
+		Label.SelectedTextColor			"210 210 210 255"
 		Label.BgColor					"GMod_BG"
-		Label.DisabledFgColor1			"110 110 110 255"
-		Label.DisabledFgColor2			"50 50 50 255"
+		Label.DisabledFgColor1			"90 90 90 255"
+		Label.DisabledFgColor2			"85 85 85 245"
 
-		ListPanel.TextColor					"White"
+		ListPanel.TextColor					"240 240 240 255"
 		ListPanel.TextBgColor				"Blank"
-		ListPanel.BgColor					"24 7 51 250"
-		ListPanel.SelectedTextColor			"White"
-		ListPanel.SelectedBgColor			"62 19 133 204"
-		ListPanel.OutOfFocusSelectedTextColor	"White"
-		ListPanel.SelectedOutOfFocusBgColor		"145 92 131 100"
-		ListPanel.EmptyListInfoTextColor	"White"
+		ListPanel.BgColor					"12 12 12 50"
+		ListPanel.SelectedTextColor			"121 83 181 255"
+		ListPanel.SelectedBgColor			"50 50 50 204"
+		ListPanel.OutOfFocusSelectedTextColor	"Black"
+		ListPanel.SelectedOutOfFocusBgColor		"132 183 241 100"
+		ListPanel.EmptyListInfoTextColor	"Black"
 
-		Menu.TextColor					"255 255 255 255"
-		Menu.BgColor					"43 0 112 240"
-		Menu.ArmedTextColor				"White"
-		Menu.ArmedBgColor				"145 92 131 255"
+		Menu.TextColor					"240 240 240 255"
+		Menu.BgColor					"25 25 28 50"
+		Menu.ArmedTextColor				"121 83 181 255"
+		Menu.ArmedBgColor				"40 40 42 255"
 		Menu.TextInset					"6"
 
 		Panel.FgColor					"DullWhite"
 		Panel.BgColor					"GMod_BG"
 
-		ProgressBar.FgColor				"White"
-		ProgressBar.BgColor				"TransparentBlack"
+		ProgressBar.FgColor				"121 83 181 255"
+		ProgressBar.BgColor				"12 12 12 50"
 
-		PropertySheet.TextColor				"10 10 10 200"
-		PropertySheet.SelectedTextColor		"10 10 10 255"
-		PropertySheet.SelectedBgColor		"10 10 10 255"
+		PropertySheet.TextColor				"240 240 240 240"
+		PropertySheet.SelectedTextColor		"White"
+		PropertySheet.SelectedBgColor		"60 60 60 255"
 		PropertySheet.TransitionEffectTime	"0.25"	// time to change from one tab to another
-		PropertySheet.BgColor				"Black"
+		PropertySheet.BgColor				"37 37 37 50"
 
-		RadioButton.TextColor			"OffWhite"
-		RadioButton.SelectedTextColor	"White"
+		RadioButton.TextColor			"240 240 240 240"
+		RadioButton.SelectedTextColor	"121 83 181 255"
 
-		RichText.TextColor				"OffWhite"
-		RichText.BgColor				"TransparentBlack"
-		RichText.SelectedTextColor		"White"
-		RichText.SelectedBgColor		"115 79 150 204"
+		// Console
+		RichText.TextColor				"210 210 210 255"
+		RichText.BgColor				"12 12 12 150"
+		RichText.SelectedTextColor		"121 83 181 255"
+		RichText.SelectedBgColor		"20 20 20 150"
 
 		ScrollBar.Wide					15
 
-		ScrollBarButton.FgColor				"60 60 60 255"
-		ScrollBarButton.BgColor				"207 207 207 255"
-		ScrollBarButton.ArmedFgColor		"88 66 124 255"
-		ScrollBarButton.ArmedBgColor		"210 237 255 255"
-		ScrollBarButton.DepressedFgColor	"82 45 128 255"
-		ScrollBarButton.DepressedBgColor	"154 78 174 255"
+		ScrollBarButton.FgColor				"Button.FgColor"
+		ScrollBarButton.BgColor				"Button.BgColor"
+		ScrollBarButton.ArmedFgColor		"Button.ArmedFgColor"
+		ScrollBarButton.ArmedBgColor		"Button.ArmedBgColor"
+		ScrollBarButton.DepressedFgColor	"Button.DepressedFgColor"
+		ScrollBarButton.DepressedBgColor	"Button.DepressedBgColor"
 
-		ScrollBarSlider.FgColor				"81 4 204 229"			// nob color
-		ScrollBarSlider.BgColor				"60 5 150 229"	// slider background color
+		ScrollBarSlider.FgColor				"46 46 48 255"			// nob color
+		ScrollBarSlider.BgColor				"29 29 31 255"	// slider background color
 
-		SectionedListPanel.HeaderTextColor	"50 50 50 255"
+		SectionedListPanel.HeaderTextColor	"121 83 181 255"
 		SectionedListPanel.HeaderBgColor	"Blank"
 		SectionedListPanel.DividerColor		"0 0 0 150"
-		SectionedListPanel.TextColor		"White"
+		SectionedListPanel.TextColor		"Button.FgColor"
 		SectionedListPanel.BrightTextColor	"White"
-		SectionedListPanel.BgColor			"24 7 51 250"
-		SectionedListPanel.SelectedTextColor			"White"
-		SectionedListPanel.SelectedBgColor				"111 45 168 204"
-		SectionedListPanel.OutOfFocusSelectedTextColor	"White"
-		SectionedListPanel.OutOfFocusSelectedBgColor	"115 79 150 100"
+		SectionedListPanel.BgColor			"17 17 17 50"
+		SectionedListPanel.SelectedTextColor			"18 18 18 255"
+		SectionedListPanel.SelectedBgColor				"121 83 181 50"
+		SectionedListPanel.OutOfFocusSelectedTextColor	"18 18 18 230"
+		SectionedListPanel.OutOfFocusSelectedBgColor	"121 83 181 60"
 
-		Slider.NobColor				"220 220 220 255"
-		Slider.TextColor			"180 180 180 255"
-		Slider.TrackColor			"184 184 184 229"
-		Slider.DisabledTextColor1	"110 110 110 255"
-		Slider.DisabledTextColor2	"50 50 50 255"
+		Slider.NobColor				"46 46 48 255"
+		Slider.TextColor			"Label.TextColor"
+		Slider.TrackColor			"50 50 50 200"
+		Slider.DisabledTextColor1	"Label.DisabledFgColor1"
+		Slider.DisabledTextColor2	"Label.DisabledFgColor2"
 
-		TextEntry.TextColor			"255 255 255 255"
-		TextEntry.BgColor			"90 5 227 50"
-		TextEntry.CursorColor		"255 255 255 255"
-		TextEntry.DisabledTextColor	"128 128 128 255"
-		TextEntry.DisabledBgColor	"192 192 192 255"
-		TextEntry.SelectedTextColor	"10 10 10 255"
-		TextEntry.SelectedBgColor	"144 77 250 255"
-		TextEntry.OutOfFocusSelectedBgColor	"132 183 241 100"
-		TextEntry.FocusEdgeColor	"0 0 0 196"
+		TextEntry.TextColor			"Label.TextColor"
+		TextEntry.BgColor			"33 33 33 50"
+		TextEntry.CursorColor		"121 83 181 240"
+		TextEntry.DisabledTextColor	"DullWhite"
+		TextEntry.DisabledBgColor	"192 192 192 50"
+		TextEntry.SelectedTextColor	"10 10 10 50"
+		TextEntry.SelectedBgColor	"SectionedListPanel.SelectedBgColor"
+		TextEntry.OutOfFocusSelectedBgColor	"SectionedListPanel.OutOfFocusSelectedBgColor"
+		TextEntry.FocusEdgeColor	"TransparentBlack"
 
 		ToggleButton.SelectedTextColor	"White"
 
-		Tooltip.TextColor			"110 102 60 255"
-		Tooltip.BgColor				"249 238 181 255"
+		Tooltip.TextColor			"Menu.ArmedTextColor"
+		Tooltip.BgColor				"Menu.ArmedBgColor"
 
 		TreeView.BgColor			"TransparentBlack"
 
@@ -227,7 +232,6 @@ Scheme
 		"QuickListBGDeselected"		"AchievementsDarkGrey"
 		"QuickListBGSelected"		"AchievementsLightGrey"
 	}
-
 
 	//////////////////////// BITMAP FONT FILES /////////////////////////////
 	//
