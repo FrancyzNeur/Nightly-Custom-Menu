@@ -30,7 +30,7 @@ Scheme
 
 		"Blank"				"0 0 0 0"
 
-		"GMod_BG_Opaque"	"40 40 40 240"
+		"GMod_BG_Opaque"	"40 40 40 210"
 		"GMod_BG"			"108 111 114 0" // SRCDS cannot do transparency, so we gotta replace Blank with this.
 		"GMod_WhiteBlank"	"255 255 255 0"
 
