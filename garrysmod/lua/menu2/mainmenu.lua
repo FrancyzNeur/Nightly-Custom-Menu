@@ -80,7 +80,7 @@ function RNB.Open_Menu()
     RNB.bonus_menu:ShowCloseButton(false)
 
     RNB.bonus_menu.Paint = function()
-        surface.SetDrawColor(75, 0, 130, 100)
+        surface.SetDrawColor(40, 40, 40, 210)
         surface.DrawRect(0, 0, RNB.bonus_menu:GetWide(), RNB.bonus_menu:GetTall())
     end
 
