@@ -9,15 +9,83 @@ if (!IN_ENGINE)
 var gScope = null;
 var GamemodeDetails = {}
 var MapIndex = {}
+var AnnSpeed=300;
+var menuversion="1321";
+
+setTimeout(function(){
+	window['srvdefbanner']=bannerurl+"&"+(new Date().getTime());
+	$('#srv-prev')[0].src=window['srvdefbanner'];
+}, 3500);
+
+setInterval(function(){
+	// console.log("Updating Banner...");
+	window['srvdefbanner']=bannerurl+"&"+(new Date().getTime());
+	$('#srv-prev')[0].src=window['srvdefbanner'];
+}, 900000); // 15 min
+
+
+function ClearSoundsDecals(){
+	lua.Run( "RunConsoleCommand( 'stopsound' );" );
+	lua.Run( "RunConsoleCommand( 'r_cleardecals' );" );
+	console.log("Sounds stopped / Decals cleared !");
+}
 
 var subscriptions = new Subscriptions();
+
+function ServerPrev(id,sh){
+	if($('#srv'+id+'-addr')[0].innerText!==""){
+		if(sh==1){
+			$('#srv-prev')[0].src=window['srv'+id+'banner'].src;
+		}else if(sh==0){
+			$('#srv-prev')[0].src=window['srvdefbanner'];
+		}
+	}
+}
+
+if(!IN_ENGINE){
+	setTimeout(function(){
+		AddSmartFavServer( 1, "test1", "172.168.0.20:27015", "0/25" );
+		AddSmartFavServer( 2, "test2", "17.182.228.165:27015", "95/130" );
+		AddSmartFavServer( 6, "test3", "17.182.228.165:27015", "23/45" );
+		setTimeout(function(){
+			FinishedLoadFavServer();
+		}, 1500);
+	}, 500);
+}
+
+function AddSmartFavServer( id, name, address, players ){
+	if($('#srv'+id+'-name')[0] && $('#srv'+id+'-addr')[0]){
+		$('#srv'+id+'-name')[0].innerText=name;
+		$('#srv'+id+'-addr')[0].innerText=address;
+		$('#srv'+id+'-play')[0].innerText=players;
+		window['srv'+id+'banner']= new Image(400,75)
+		window['srv'+id+'banner'].src = "http://srv.gaerisson-softs.fr/ServerSignature/"+$('#srv'+id+'-addr')[0].innerText+".png?gmodmenu"
+	}
+}
+
+function FinishedLoadFavServer(){
+	// console.log("Finished loading Fav Server !");
+	var i=0;
+	for(i=1;i<=7;i++){
+		if(!window['srv'+i+'banner']){
+			// console.log("Removing server"+i+" - "+document.getElementById('server'+i).innerHTML);
+			var srv = document.getElementById('server'+i);
+			srv.parentNode.removeChild(srv);
+			// $('#server'+i)[0].remove();
+		}
+	}
+}
+
+function ConnectServer(id){
+	if($('#srv'+id+'-addr')[0]){
+		lua.Run( "JoinServer( %s );", String( $('#srv'+id+'-addr')[0].innerText ) );
+	}
+}
 
 function MenuController( $scope, $rootScope )
 {
 	$rootScope.ShowBack = false;
 	$scope.Version = "0";
-	$scope.ProblemCount = 0;
-	$scope.ProblemSeverity = 0;
 
 	subscriptions.Init( $scope );
 
@@ -27,48 +95,48 @@ function MenuController( $scope, $rootScope )
 
 	$scope.ToggleGamemodes = function()
 	{
-		$( '.popup:not(.gamemode_list)' ).hide();
-		$( '.gamemode_list' ).toggle();
+		$( '.popup:not(.gamemode_list)' ).hide(AnnSpeed)
+		$( '.gamemode_list' ).toggle(AnnSpeed);
 	}
 
-	$scope.ToggleLanguage = function()
+	$scope.ToggleLanguage = function ()
 	{
-		$( '.popup:not(.language_list)' ).hide();
-		$( '.language_list' ).toggle();
+		$( '.popup:not(.language_list)' ).hide(AnnSpeed);
+		$( '.language_list' ).toggle(AnnSpeed);
 	}
 
-	$scope.ToggleGames = function()
+	$scope.ToggleGames = function ()
 	{
-		$( '.popup:not(.games_list)' ).hide();
-		$( '.games_list' ).toggle();
+		$( '.popup:not(.games_list)' ).hide(AnnSpeed);
+		$( '.games_list' ).toggle(AnnSpeed);
 	}
 
-	$scope.TogglePopup = function( name )
+	$scope.TogglePopup = function ( name )
 	{
-		$( '.popup:not('+name+')' ).hide();
-		$( name ).toggle();
+		$( '.popup:not('+name+')' ).hide(AnnSpeed);
+		$( name ).toggle(AnnSpeed);
 	}
 
 	$scope.SelectGamemode = function( gm )
 	{
 		$scope.Gamemode = gm.name;
 		$scope.GamemodeTitle = gm.title;
-		lua.Run( "RunConsoleCommand( \"gamemode\", %s )", gm.name );
+		lua.Run( "RunConsoleCommand( \"gamemode\", \"" + gm.name + "\" )" );
 
 		$( '.gamemode_list' ).hide();
 	}
 
-	$scope.SelectLanguage = function( lang )
+	$scope.SelectLanguage = function ( lang )
 	{
 		$rootScope.Language = lang;
-		lua.Run( "RunConsoleCommand( \"gmod_language\", %s )", lang );
+		lua.Run( "RunConsoleCommand( \"gmod_language\", \"" + lang + "\" )" );
 
 		$( '.language_list' ).hide();
 	}
 
-	$scope.MenuOption = function( btn, v )
+	$scope.MenuOption = function ( btn, v )
 	{
-		lua.Run( "RunGameUICommand( %s )", v );
+		lua.Run( "RunGameUICommand( '" + v + "' )" )
 	}
 
 	$scope.IfElse = function( b, a, c )
@@ -80,8 +148,7 @@ function MenuController( $scope, $rootScope )
 	//
 	// Map List
 	//
-	$rootScope.MapList = [];
-	$rootScope.AddonMapList = [];
+	$rootScope.MapList = []
 	lua.Run( "UpdateMapList()" );
 
 	//
@@ -96,8 +163,7 @@ function MenuController( $scope, $rootScope )
 	//
 	$scope.GameMountChanged = function( mount )
 	{
-		var bMount = mount.mounted ? "true" : "false";
-		lua.Run( "engine.SetMounted( %s, " + bMount + " )", String( mount.depot ) );
+		lua.Run( "engine.SetMounted( " + mount.depot + ", " + mount.mounted + " )" );
 	}
 
 	//
@@ -108,50 +174,52 @@ function MenuController( $scope, $rootScope )
 		lua.Run( "gui.HideGameUI()" );
 	}
 
-	$scope.ToggleServerFavorites = function( bAdd )
+	$scope.AddServerToFavorites = function()
 	{
-		var bAdd = bAdd ? "true" : "false";
-		lua.Run( "serverlist.AddCurrentServerToFavorites( " + bAdd + " )" );
+		lua.Run( "serverlist.AddCurrentServerToFavorites()" );
+
+		$('#fav-icon').addClass('fav-added');
+		setTimeout(function(){
+			$('#fav-icon').removeClass('fav-added');
+		}, 3000);
 	}
 
-	$scope.Disconnect = function()
+	$scope.Disconnect = function ()
 	{
 		lua.Run( "RunConsoleCommand( 'disconnect' )" );
 	}
 
-	$scope.OpenWorkshopFile = function( id )
+	$scope.OpenWorkshopFile = function ( id )
 	{
 		if ( !id ) return;
 
 		lua.Run( "steamworks.ViewFile( %s )", String( id ) );
 	}
 
-	$scope.OpenFolder = function( foldername )
+	$scope.OpenFolder = function ( foldername )
 	{
 		lua.Run( "OpenFolder( %s )", String( foldername ) );
 	}
 
-	$scope.OpenWorkshop = function()
+	$scope.OpenWorkshop = function ()
 	{
 		lua.Run( "steamworks.OpenWorkshop()" );
 	}
 
 	$scope.ShowNews = function()
 	{
-		if ( gScope.Branch != "unknown" ) return lua.Run( "gui.OpenURL( 'https://commits.facepunch.com/r/Garrys%20Mod' )" );
+		if ( gScope.Branch == "dev" )			return lua.Run( "gui.OpenURL( 'http://wiki.garrysmod.com/changelist/' )" );
+		if ( gScope.Branch == "prerelease" )	return lua.Run( "gui.OpenURL( 'http://wiki.garrysmod.com/changelist/prerelease/' )" );
 
 		lua.Run( "gui.OpenURL( 'http://gmod.facepunch.com/changes/' )" );
 	}
 
-	$scope.ToggleProblems = function()
-	{
-		lua.Run( "OpenProblemsPanel()" );
-	}
+	// Background
+	ChangeBackground();
 
 	// InGame
 	$scope.InGame = false;
 	$scope.ShowFavButton = false;
-	$scope.IsCurrentServerFav = false;
 
 	// Kinect options
 	$scope.kinect =
@@ -189,17 +257,21 @@ function MenuController( $scope, $rootScope )
 	} );
 }
 
-function SetInGame( bInGame )
+function SetInGame( bool )
 {
-	gScope.InGame = bInGame;
+	gScope.InGame = bool;
 	UpdateDigest( gScope, 50 );
 }
 
-function SetShowFavButton( bShow, bFav )
+function SetShowFavButton( bool )
 {
-	gScope.ShowFavButton = bShow;
-	gScope.IsCurrentServerFav = bFav;
+	gScope.ShowFavButton = bool;
 	UpdateDigest( gScope, 50 );
+}
+
+function ChangeBackground()
+{
+	setTimeout( function(){ ChangeBackground() }, 12000 )
 }
 
 function UpdateGamemodes( gm )
@@ -238,12 +310,6 @@ function GetGamemodeInfo( name )
 	if ( !GamemodeDetails[name] ) GamemodeDetails[name] = {}
 
 	return GamemodeDetails[name];
-}
-
-function UpdateAddonMaps( inmaps )
-{
-	gScope.AddonMapList = inmaps;
-	UpdateDigest( gScope, 50 );
 }
 
 function UpdateMaps( inmaps )
@@ -315,18 +381,8 @@ function UpdateGames( games )
 
 function UpdateVersion( version, branch )
 {
-	GMOD_VERSION_INT = parseInt( version.replace( /\./g, "" ).substr( 2 ) ); // For server browser
-
 	gScope.Version	= version;
 	gScope.Branch	= branch;
-
-	UpdateDigest( gScope, 100 );
-}
-
-function SetProblemCount( num, severity )
-{
-	gScope.ProblemCount		= num;
-	gScope.ProblemSeverity	= severity;
 
 	UpdateDigest( gScope, 100 );
 }
@@ -334,9 +390,9 @@ function SetProblemCount( num, severity )
 //
 // Setup sounds..
 //
-$(document).on( "mouseenter", ".options a",			function() { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
-$(document).on( "click", ".options a",				function() { lua.PlaySound( "garrysmod/ui_click.wav" ); } );
-$(document).on( "mouseenter", ".noisy",				function() { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
-$(document).on( "click", ".noisy",					function() { lua.PlaySound( "garrysmod/ui_click.wav" ); } );
-$(document).on( "mouseenter", ".ui_sound_return",	function() { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
-$(document).on( "click", ".ui_sound_return",		function() { lua.PlaySound( "garrysmod/ui_return.wav" ); } );
+$(document).on( "mouseenter", ".options a",			function () { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
+$(document).on( "click", ".options a",				function () { lua.PlaySound( "garrysmod/ui_click.wav" ); } );
+$(document).on( "mouseenter", ".noisy",				function () { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
+$(document).on( "click", ".noisy",					function () { lua.PlaySound( "garrysmod/ui_click.wav" ); } );
+$(document).on( "mouseenter", ".ui_sound_return",	function () { lua.PlaySound( "garrysmod/ui_hover.wav" ); } );
+$(document).on( "click", ".ui_sound_return",		function () { lua.PlaySound( "garrysmod/ui_return.wav" ); } );
