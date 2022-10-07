@@ -16,7 +16,7 @@
     Команда: +play "ui/nightly.mp3"
     
     Остались вопросы? Жду в личных сообщениях - 
-    https://vk.com/umped
+    https://vk.com/dbgeo
 
     Или на Support Discord Nightly -
     https://discord.gg/jKtqUwMSQT
